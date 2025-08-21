@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCAT Edge - Smart MCAT Prep with Real Questions & Community</title>
+    <meta name="description" content="Join the waitlist for MCAT Edge - an intuitive, practical, and affordable collaborative question bank built for premeds. Get exclusive early access and special discounts before launch.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="shortcut icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <script src="https://www.google.com/recaptcha/api.js?render=6LcYr60rAAAAAHqHNM9-Aldd44dXPcjZl8JVphsC"></script>
+    <script src="config.js"></script>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                
+                <h1 class="hero-title">
+                    Welcome to <span class="highlight">MCAT Edge</span>
+                </h1>
+                <p class="hero-subtitle">
+                    An intuitive, practical, and affordable collaborative question bank built for premeds.
+                </p>
+                <div class="hero-cta">
+                    <div class="key-icon">🔑</div>
+                    <p class="cta-text">Get exclusive early access before launch.</p>
+                </div>
+                
+                <!-- Waitlist Form -->
+                <div class="waitlist-form-container">
+                    <form id="waitlistForm" class="waitlist-form">
+                        <div class="form-group">
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name" 
+                                placeholder="Enter your full name" 
+                                required
+                                class="form-input"
+                            >
+                        </div>
+                        <div class="form-group">
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                placeholder="Enter your email here" 
+                                required
+                                class="form-input"
+                            >
+                        </div>
+                        <div class="form-group">
+                            <input 
+                                type="hidden" 
+                                id="bot" 
+                                name="bot" 
+                                value="bot"
+                            >
+                        </div>
+                        <div class="form-group">
+                            <input 
+                                type="hidden" 
+                                id="bot_capture" 
+                                name="bot_capture" 
+                                value=""
+                            >
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+                        </div>
+                        <button type="submit" class="submit-button">
+                            Join the Waitlist
+                        </button>
+                        <p class="form-note">We'll notify you when we launch our product!</p>
+                    </form>
+                    <div id="formMessage" class="form-message"></div>
+                </div>
+
+                <p class="hero-description">
+                    Start smarter prep with real strategies, real questions, and a real community—designed by a 97th percentile scorer.
+                </p>
+                <div class="coming-soon-badge">
+                    <span class="badge-text">🚀 Coming Soon</span>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="mcat-illustration">
+                    <div class="question-card">
+                        <div class="card-header">
+                            <span class="subject-tag">Biology</span>
+                            <span class="difficulty">Medium</span>
+                        </div>
+                        <p class="question-text">Which of the following best describes the role of enzymes in cellular metabolism?</p>
+                        <div class="options">
+                            <div class="option">A) Energy storage</div>
+                            <div class="option">B) Catalysis</div>
+                            <div class="option">C) Structural support</div>
+                            <div class="option">D) Genetic information</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="app.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
