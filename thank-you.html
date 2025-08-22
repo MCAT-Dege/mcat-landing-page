@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You - MCAT Edge Waitlist</title>
-    <meta name="description" content="Thank you for joining the MCAT Edge waitlist. We'll notify you when we launch our product!">
+    <title>Thank You - MCAT Edge | Welcome to Early Access</title>
+    <meta name="description" content="Thank you for joining MCAT Edge early access program. Get ready for your MCAT journey with our collaborative question bank.">
+    
+    <!-- Anime.js for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,15 +18,36 @@
     <link rel="apple-touch-icon" href="logo.png">
 </head>
 <body>
-    <!-- Thank You Section -->
-    <section class="thank-you-section">
-        <div class="thank-you-container">
-            <div class="thank-you-content">
-                <div class="hero-logo">
-                    <img src="logo.png" alt="MCAT Edge Logo" class="logo-image">
-                    <h2>MCAT Edge</h2>
-                </div>
-                
+    <!-- Background Animations -->
+    <div class="bg-animations">
+        <div class="grid-overlay"></div>
+        <div class="floating-shapes" id="floating-shapes"></div>
+        
+        <!-- DNA Helix Animation -->
+        <div class="dna-helix">
+            <div class="dna-strand left"></div>
+            <div class="dna-strand right"></div>
+            <div class="dna-base" style="top: 10px;"></div>
+            <div class="dna-base" style="top: 30px;"></div>
+            <div class="dna-base" style="top: 50px;"></div>
+            <div class="dna-base" style="top: 70px;"></div>
+            <div class="dna-base" style="top: 90px;"></div>
+            <div class="dna-base" style="top: 110px;"></div>
+            <div class="dna-base" style="top: 130px;"></div>
+            <div class="dna-base" style="top: 150px;"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="thank-you-content">
+            <!-- Logo and Header -->
+            <div class="logo-container">
+                <img src="logo.png" alt="MCAT Edge Logo" class="medical-logo">
+                <div class="logo">MCAT Edge</div>
+            </div>
+            
+            <!-- Success Icon and Title -->
+            <div class="success-section">
                 <div class="success-icon">🎉</div>
                 <h1 class="thank-you-title">Welcome to MCAT Edge!</h1>
                 
@@ -31,42 +56,195 @@
                 
                 <!-- Personalized Welcome Message -->
                 <p class="thank-you-message">
-                    Thank you for joining our exclusive waitlist, <span id="userName">premed</span>! You're now part of an exclusive group of premeds who will get first access to MCAT Edge when we launch.
+                    Thank you for joining our exclusive waitlist, <span id="userName" class="user-name">premed</span>! You're now part of an exclusive group of premeds who will get first access to MCAT Edge when we launch.
                 </p>
-                
-                <div class="next-steps">
-                    <h2>What happens next?</h2>
-                    <div class="steps-grid">
-                        <div class="step-item">
-                            <div class="step-number">1</div>
-                            <h3>Stay Updated</h3>
-                            <p>We'll send you exclusive updates about our progress and launch timeline.</p>
+            </div>
+            
+            <!-- Next Steps Section -->
+            <div class="next-steps">
+                <h2 class="next-steps-title">What happens next?</h2>
+                <div class="steps-grid">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Confirmation Email</h3>
+                            <p>Check your inbox for a confirmation email with your early access details and next steps.</p>
                         </div>
-                        <div class="step-item">
-                            <div class="step-number">2</div>
-                            <h3>Early Access</h3>
-                            <p>Be the first to know when MCAT Edge goes live with special early access.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Platform Access</h3>
+                            <p>You'll receive login credentials and platform access within 24-48 hours of launch.</p>
                         </div>
-                        <div class="step-item">
-                            <div class="step-number">3</div>
-                            <h3>Launch Day</h3>
-                            <p>Get instant access to our collaborative question bank and community.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Personalized Experience</h3>
+                            <p>Our AI will create a custom study plan based on your goals and schedule.</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="cta-section">
-                    <a href="/" class="back-home-button">← Back to Home</a>
-                </div>
+            </div>
+            
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <a href="/" class="back-home-button">
+                    ← Back to Main Page
+                </a>
             </div>
         </div>
-    </section>
+    </div>
 
-    <script src="app.js"></script>
-    <script src="script.js"></script>
     <script>
-        // Handle API response messages on thank you page
+        // Initialize animations when page loads
         document.addEventListener('DOMContentLoaded', function() {
+            initThankYouAnimations();
+            initBackgroundAnimations();
+            handleURLParameters();
+        });
+
+        function initThankYouAnimations() {
+            // Logo container entrance
+            anime({
+                targets: '.logo-container',
+                translateY: [-30, 0],
+                opacity: [0, 1],
+                duration: 800,
+                easing: 'easeOutExpo'
+            });
+
+            // Success section entrance
+            anime({
+                targets: '.success-section > *',
+                translateY: [30, 0],
+                opacity: [0, 1],
+                duration: 600,
+                delay: function(el, i) {
+                    return 300 + (i * 150);
+                },
+                easing: 'easeOutExpo'
+            });
+
+            // Next steps entrance
+            anime({
+                targets: '.next-steps-title',
+                translateX: [-50, 0],
+                opacity: [0, 1],
+                duration: 600,
+                delay: 800,
+                easing: 'easeOutExpo'
+            });
+
+            // Step items entrance
+            anime({
+                targets: '.step-item',
+                scale: [0, 1],
+                rotate: [180, 0],
+                opacity: [0, 1],
+                duration: 600,
+                delay: function(el, i) {
+                    return 1000 + (i * 200);
+                },
+                easing: 'easeOutBack'
+            });
+
+            // CTA button entrance
+            anime({
+                targets: '.back-home-button',
+                translateY: [30, 0],
+                opacity: [0, 1],
+                duration: 600,
+                delay: 1600,
+                easing: 'easeOutExpo'
+            });
+        }
+
+        function initBackgroundAnimations() {
+            // Create floating shapes
+            const shapesContainer = document.getElementById('floating-shapes');
+            const shapes = [];
+            
+            // Generate multiple floating shapes
+            for (let i = 0; i < 15; i++) {
+                const shape = document.createElement('div');
+                shape.classList.add('shape');
+                
+                // Random size and position
+                const size = Math.random() * 60 + 20;
+                shape.style.width = size + 'px';
+                shape.style.height = size + 'px';
+                shape.style.left = Math.random() * 100 + '%';
+                shape.style.top = Math.random() * 100 + '%';
+                
+                shapesContainer.appendChild(shape);
+                shapes.push(shape);
+            }
+
+            // Animate floating shapes
+            anime({
+                targets: shapes,
+                translateX: function() {
+                    return anime.random(-100, 100);
+                },
+                translateY: function() {
+                    return anime.random(-100, 100);
+                },
+                scale: function() {
+                    return anime.random(0.5, 1.5);
+                },
+                rotate: function() {
+                    return anime.random(0, 360);
+                },
+                opacity: function() {
+                    return anime.random(0.1, 0.6);
+                },
+                duration: function() {
+                    return anime.random(3000, 8000);
+                },
+                delay: function(el, i) {
+                    return anime.random(0, 2000);
+                },
+                direction: 'alternate',
+                loop: true,
+                easing: 'easeInOutSine'
+            });
+
+            // DNA Helix rotation animation
+            anime({
+                targets: '.dna-helix',
+                rotateY: 360,
+                duration: 10000,
+                loop: true,
+                easing: 'linear'
+            });
+
+            // DNA bases pulsing
+            anime({
+                targets: '.dna-base',
+                scaleX: [1, 1.3, 1],
+                opacity: [0.3, 0.8, 0.3],
+                duration: 2000,
+                delay: function(el, i) {
+                    return i * 200;
+                },
+                direction: 'alternate',
+                loop: true,
+                easing: 'easeInOutSine'
+            });
+
+            // Grid overlay subtle animation
+            anime({
+                targets: '.grid-overlay',
+                opacity: [0.3, 0.7, 0.3],
+                duration: 5000,
+                loop: true,
+                easing: 'easeInOutSine'
+            });
+        }
+
+        function handleURLParameters() {
             const urlParams = new URLSearchParams(window.location.search);
             const status = urlParams.get('status');
             const message = urlParams.get('message');
@@ -83,12 +261,12 @@
             if (status && message) {
                 const apiMessageElement = document.getElementById('apiMessage');
                 if (apiMessageElement) {
-                    apiMessageElement.textContent = message;
+                    apiMessageElement.textContent = decodeURIComponent(message);
                     apiMessageElement.style.display = 'block';
                     
                     // Set appropriate styling based on status
                     if (status === 'true' || status === 'success') {
-                        apiMessageElement.className = 'api-message';
+                        apiMessageElement.className = 'api-message success';
                     } else if (status === 'false' || status === 'error') {
                         apiMessageElement.className = 'api-message error';
                     } else {
@@ -96,6 +274,28 @@
                     }
                 }
             }
+        }
+
+        // Mouse movement parallax effect
+        document.addEventListener('mousemove', function(e) {
+            const shapes = document.querySelectorAll('.shape');
+            
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.5;
+                const x = (mouseX - 0.5) * speed * 20;
+                const y = (mouseY - 0.5) * speed * 20;
+                
+                anime({
+                    targets: shape,
+                    translateX: x,
+                    translateY: y,
+                    duration: 1000,
+                    easing: 'easeOutQuart'
+                });
+            });
         });
     </script>
 </body>

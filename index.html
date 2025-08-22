@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCAT Edge - Smart MCAT Prep with Real Questions & Community</title>
+    <title>MCAT Edge - Early Access | AI-Powered MCAT Prep</title>
     <meta name="description" content="Join the waitlist for MCAT Edge - an intuitive, practical, and affordable collaborative question bank built for premeds. Get exclusive early access and special discounts before launch.">
+    
+    <!-- Anime.js for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <!-- reCAPTCHA v3 -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LcYr60rAAAAAHqHNM9-Aldd44dXPcjZl8JVphsC"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,102 +18,136 @@
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="shortcut icon" type="image/png" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
-    <script src="https://www.google.com/recaptcha/api.js?render=6LcYr60rAAAAAHqHNM9-Aldd44dXPcjZl8JVphsC"></script>
     <script src="config.js"></script>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                
-                <h1 class="hero-title">
-                    Welcome to <span class="highlight">MCAT Edge</span>
-                </h1>
-                <p class="hero-subtitle">
-                    An intuitive, practical, and affordable collaborative question bank built for premeds.
-                </p>
-                <div class="hero-cta">
-                    <div class="key-icon">🔑</div>
-                    <p class="cta-text">Get exclusive early access before launch.</p>
-                </div>
-                
-                <!-- Waitlist Form -->
-                <div class="waitlist-form-container">
-                    <form id="waitlistForm" class="waitlist-form">
-                        <div class="form-group">
-                            <input 
-                                type="text" 
-                                id="name" 
-                                name="name" 
-                                placeholder="Enter your full name" 
-                                required
-                                class="form-input"
-                            >
-                        </div>
-                        <div class="form-group">
-                            <input 
-                                type="email" 
-                                id="email" 
-                                name="email" 
-                                placeholder="Enter your email here" 
-                                required
-                                class="form-input"
-                            >
-                        </div>
-                        <div class="form-group">
-                            <input 
-                                type="hidden" 
-                                id="bot" 
-                                name="bot" 
-                                value="bot"
-                            >
-                        </div>
-                        <div class="form-group">
-                            <input 
-                                type="hidden" 
-                                id="bot_capture" 
-                                name="bot_capture" 
-                                value=""
-                            >
-                        </div>
-                        <div class="form-group">
-                            <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
-                        </div>
-                        <button type="submit" class="submit-button">
-                            Join the Waitlist
-                        </button>
-                        <p class="form-note">We'll notify you when we launch our product!</p>
-                    </form>
-                    <div id="formMessage" class="form-message"></div>
-                </div>
+    <!-- Background Animations -->
+    <div class="bg-animations">
+        <div class="grid-overlay"></div>
+        <div class="floating-shapes" id="floating-shapes"></div>
+        
+        <!-- DNA Helix Animation -->
+        <div class="dna-helix">
+            <div class="dna-strand left"></div>
+            <div class="dna-strand right"></div>
+            <div class="dna-base" style="top: 10px;"></div>
+            <div class="dna-base" style="top: 30px;"></div>
+            <div class="dna-base" style="top: 50px;"></div>
+            <div class="dna-base" style="top: 70px;"></div>
+            <div class="dna-base" style="top: 90px;"></div>
+            <div class="dna-base" style="top: 110px;"></div>
+            <div class="dna-base" style="top: 130px;"></div>
+            <div class="dna-base" style="top: 150px;"></div>
+        </div>
+    </div>
 
-                <p class="hero-description">
-                    Start smarter prep with real strategies, real questions, and a real community—designed by a 97th percentile scorer.
-                </p>
-                <div class="coming-soon-badge">
-                    <span class="badge-text">🚀 Coming Soon</span>
+    <div class="container">
+        <!-- Main Landing Page -->
+        <div class="main-content" id="mainContent">
+            <div class="hero-section">
+                <div class="logo-container">
+                    <img src="logo.png" alt="MCAT Edge Logo" class="medical-logo">
+                    <div class="logo">MCAT Edge</div>
                 </div>
-            </div>
-            <div class="hero-visual">
-                <div class="mcat-illustration">
-                    <div class="question-card">
-                        <div class="card-header">
-                            <span class="subject-tag">Biology</span>
-                            <span class="difficulty">Medium</span>
-                        </div>
-                        <p class="question-text">Which of the following best describes the role of enzymes in cellular metabolism?</p>
-                        <div class="options">
-                            <div class="option">A) Energy storage</div>
-                            <div class="option">B) Catalysis</div>
-                            <div class="option">C) Structural support</div>
-                            <div class="option">D) Genetic information</div>
-                        </div>
+                
+                <div class="early-access-badge">🚀 Early Access Program</div>
+                <h1 class="tagline">Master Your MCAT Journey</h1>
+                <p class="description">
+                    An intuitive, practical, and affordable collaborative question bank built for premeds. Start smarter prep with real strategies, real questions, and a real community—designed by a 97th percentile scorer.
+                </p>
+
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-number">97th</div>
+                        <div class="stat-label">Percentile Score</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Premed Focused</div>
+                    </div>
+                </div>
+                
+                <div class="features">
+                    <div class="feature">
+                        <div class="check-icon">✓</div>
+                        <span>Collaborative Learning</span>
+                    </div>
+                    <div class="feature">
+                        <div class="check-icon">✓</div>
+                        <span>Real MCAT Questions</span>
+                    </div>
+                    <div class="feature">
+                        <div class="check-icon">✓</div>
+                        <span>Affordable Pricing</span>
+                    </div>
+                    <div class="feature">
+                        <div class="check-icon">✓</div>
+                        <span>Expert Strategies</span>
                     </div>
                 </div>
             </div>
+
+            <div class="form-container">
+                <h2 class="form-title">Get Early Access</h2>
+                <p class="form-subtitle">
+                    Be among the first to experience the future of MCAT prep with our collaborative platform.
+                </p>
+
+                <form id="waitlistForm" class="waitlist-form" novalidate>
+                    <div class="form-group">
+                        <label class="form-label" for="name">Full Name</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            placeholder="Enter your full name" 
+                            required
+                            minlength="2"
+                            maxlength="50"
+                            class="form-input"
+                        >
+                        <div class="field-error" id="nameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="Enter your email address" 
+                            required
+                            class="form-input"
+                        >
+                        <div class="field-error" id="emailError"></div>
+                    </div>
+                    
+                    <!-- Hidden fields for existing functionality -->
+                    <div class="form-group">
+                        <input type="hidden" id="bot" name="bot" value="bot">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" id="bot_capture" name="bot_capture" value="">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="loading-spinner" id="loadingSpinner"></span>
+                        <span id="buttonText">Secure My Early Access</span>
+                    </button>
+                </form>
+
+                <!-- Form message for existing functionality -->
+                <div id="formMessage" class="form-message"></div>
+
+                <div class="form-footer">
+                    By signing up, you agree to receive updates about MCAT Edge.<br>
+                    We respect your privacy and never share your information.
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
 
     <script src="app.js"></script>
     <script src="script.js"></script>
