@@ -7,7 +7,7 @@ window.MCATEdgeConfig = {
     
     // API Configuration
     api: {
-        baseUrl: 'https://admin.mcatedge.com/api/v1',
+        baseUrl: 'https://securepanel.mcatedge.com/api/v1',
         newsletterSubscribe: '/newsletter-subscribe'
     }
 };

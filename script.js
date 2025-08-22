@@ -4,89 +4,158 @@ document.addEventListener('DOMContentLoaded', function() {
     initFormAnimations();
     initWaitlistForms();
     initSmoothScrolling();
+    initMobileHeader(); // Initialize mobile header
 });
 
 function initBackgroundAnimations() {
-    // Create floating shapes
-    const shapesContainer = document.getElementById('floating-shapes');
-    const shapes = [];
+    // Initialize floating shapes with elegant movements
+    const shapes = document.querySelectorAll('.shape');
+    const particles = document.querySelectorAll('.particle');
+    const flowLines = document.querySelectorAll('.flow-line');
     
-    // Generate multiple floating shapes
-    for (let i = 0; i < 15; i++) {
-        const shape = document.createElement('div');
-        shape.classList.add('shape');
+    // Add subtle mouse parallax effect to shapes (invincible.bio style)
+    document.addEventListener('mousemove', (e) => {
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
         
-        // Random size and position
-        const size = Math.random() * 60 + 20;
-        shape.style.width = size + 'px';
-        shape.style.height = size + 'px';
-        shape.style.left = Math.random() * 100 + '%';
-        shape.style.top = Math.random() * 100 + '%';
+        shapes.forEach((shape, index) => {
+            const speed = (index + 1) * 0.3; // Reduced speed for elegance
+            const x = (mouseX - 0.5) * speed * 15;
+            const y = (mouseY - 0.5) * speed * 15;
+            
+            shape.style.transform = `translate(${x}px, ${y}px)`;
+        });
         
-        shapesContainer.appendChild(shape);
-        shapes.push(shape);
+        // Very subtle particle movement
+        particles.forEach((particle, index) => {
+            const speed = (index + 1) * 0.15; // Minimal movement
+            const x = (mouseX - 0.5) * speed * 8;
+            const y = (mouseY - 0.5) * speed * 8;
+            
+            particle.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    });
+    
+    // Add subtle hover effects to shapes (invincible.bio style)
+    shapes.forEach(shape => {
+        shape.addEventListener('mouseenter', () => {
+            anime({
+                targets: shape,
+                scale: [1, 1.1],
+                opacity: [0.08, 0.2],
+                duration: 400,
+                easing: 'easeOutCubic'
+            });
+        });
+        
+        shape.addEventListener('mouseleave', () => {
+            anime({
+                targets: shape,
+                scale: [1.1, 1],
+                opacity: [0.2, 0.08],
+                duration: 400,
+                easing: 'easeOutCubic'
+            });
+        });
+    });
+    
+    // Dynamic particle spawning with elegant timing
+    function spawnElegantParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = '100%';
+        particle.style.animationDuration = (20 + Math.random() * 15) + 's';
+        
+        document.querySelector('.particles').appendChild(particle);
+        
+        // Remove particle after animation
+        setTimeout(() => {
+            if (particle.parentNode) {
+                particle.parentNode.removeChild(particle);
+            }
+        }, 35000);
     }
-
-    // Animate floating shapes
-    anime({
-        targets: shapes,
-        translateX: function() {
-            return anime.random(-100, 100);
-        },
-        translateY: function() {
-            return anime.random(-100, 100);
-        },
-        scale: function() {
-            return anime.random(0.5, 1.5);
-        },
-        rotate: function() {
-            return anime.random(0, 360);
-        },
-        opacity: function() {
-            return anime.random(0.1, 0.6);
-        },
-        duration: function() {
-            return anime.random(3000, 8000);
-        },
-        delay: function() {
-            return anime.random(0, 2000);
-        },
-        direction: 'alternate',
-        loop: true,
-        easing: 'easeInOutSine'
+    
+    // Spawn particles less frequently for elegance
+    setInterval(spawnElegantParticle, 3000);
+    
+    // Enhanced DNA helix animation
+    const helixStrands = document.querySelectorAll('.helix-strand');
+    helixStrands.forEach((strand, index) => {
+        anime({
+            targets: strand,
+            rotateY: [0, 360],
+            duration: 10000 + (index * 1500),
+            easing: 'linear',
+            loop: true
+        });
     });
-
-    // DNA Helix rotation animation
-    anime({
-        targets: '.dna-helix',
-        rotateY: 360,
-        duration: 10000,
-        loop: true,
-        easing: 'linear'
+    
+    // Elegant grid overlay movement
+    const gridOverlay = document.querySelector('.grid-overlay');
+    if (gridOverlay) {
+        anime({
+            targets: gridOverlay,
+            translateX: [0, 80],
+            translateY: [0, 80],
+            duration: 60000, // Slower, more elegant movement
+            easing: 'linear',
+            loop: true
+        });
+    }
+    
+    // Flowing lines animation
+    flowLines.forEach((line, index) => {
+        anime({
+            targets: line,
+            translateX: [0, `calc(100vw + ${line.offsetWidth}px)`],
+            duration: 15000 + (index * 2000),
+            easing: 'linear',
+            loop: true,
+            delay: index * 3000
+        });
     });
-
-    // DNA bases pulsing
-    anime({
-        targets: '.dna-base',
-        scaleX: [1, 1.3, 1],
-        opacity: [0.3, 0.8, 0.3],
-        duration: 2000,
-        delay: function(el, i) {
-            return i * 200;
-        },
-        direction: 'alternate',
-        loop: true,
-        easing: 'easeInOutSine'
+    
+    // Floating elements with elegant movement
+    const floatingElements = document.querySelectorAll('.floating-shape');
+    floatingElements.forEach((element, index) => {
+        anime({
+            targets: element,
+            translateY: [0, -25, 0],
+            opacity: [0.1, 0.25, 0.1],
+            duration: 8000 + (index * 1000),
+            easing: 'easeInOutSine',
+            loop: true,
+            delay: index * 2500
+        });
     });
+}
 
-    // Grid overlay subtle animation
-    anime({
-        targets: '.grid-overlay',
-        opacity: [0.3, 0.7, 0.3],
-        duration: 5000,
-        loop: true,
-        easing: 'easeInOutSine'
-    });
+function initMobileHeader() {
+    // Handle mobile header visibility and interactions
+    const mobileHeader = document.querySelector('.mobile-logo-header');
+    
+    if (mobileHeader) {
+        // Add scroll effect to mobile header (subtle shadow change)
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                mobileHeader.style.boxShadow = '0 6px 25px rgba(0, 0, 0, 0.2)';
+            } else {
+                mobileHeader.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
+            }
+        });
+        
+        // Add click effect to mobile logo
+        const mobileLogo = mobileHeader.querySelector('.mobile-logo-container');
+        mobileLogo.addEventListener('click', () => {
+            // Scroll to top when mobile logo is clicked
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 }
 
 function initFormAnimations() {
@@ -110,14 +179,14 @@ function initFormAnimations() {
         delay: anime.stagger(100, {start: 400})
     });
 
-    // Animate features
+    // Animate features with staggered delays
     anime({
         targets: '.feature',
         opacity: [0, 1],
         translateX: [-20, 0],
         duration: 500,
         easing: 'easeOutCubic',
-        delay: anime.stagger(150, {start: 800})
+        delay: anime.stagger(100, {start: 800})
     });
 }
 
@@ -359,7 +428,7 @@ async function handleWaitlistSubmission(formElement, messageElement) {
 }
 
 async function submitWaitlistData(name, email, recaptchaResponse) {
-    const apiEndpoint = 'https://admin.mcatedge.com/api/v1/newsletter-subscribe';
+    const apiEndpoint = 'https://securepanel.mcatedge.com/api/v1/newsletter-subscribe';
 
     try {
         const bot = 'bot';
@@ -419,9 +488,6 @@ function getRecaptchaResponse(formId) {
 function resetRecaptcha(formId) {
 
 }
-
-
-
 
 function handleAPIResponse(response) {
 

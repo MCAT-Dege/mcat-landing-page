@@ -10,8 +10,9 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    height: 100vh;
-    overflow: hidden;
+    height: auto;
+    min-height: 100vh;
+    overflow-x: hidden;
     background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
     position: relative;
 }
@@ -83,6 +84,7 @@ body {
     opacity: 0.5;
 }
 
+/* Container and main content - Desktop centering */
 .container {
     display: flex;
     align-items: center;
@@ -96,10 +98,10 @@ body {
 }
 
 .main-content {
-    display: flex;
     max-width: 1400px;
     width: 100%;
     gap: 60px;
+    display: flex;
     align-items: center;
     height: 100%;
     box-sizing: border-box;
@@ -111,30 +113,83 @@ body {
     z-index: 2;
     max-height: 100vh;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 20px 0;
+    max-width: 600px;
+    width: 100%;
 }
 
-.logo-container {
+/* Mobile Logo Header */
+.mobile-logo-header {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    z-index: 1000;
+    padding: 15px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.mobile-logo-container {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
-    gap: 15px;
+    justify-content: center;
+    gap: 12px;
+}
+
+.mobile-logo {
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0 2px 8px rgba(16, 185, 129, 0.3));
+}
+
+.mobile-logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Desktop Logo Container - Center at top */
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 .medical-logo {
-    width: 50px;
-    height: 50px;
-    filter: drop-shadow(0 4px 8px rgba(16, 185, 129, 0.3));
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+    animation: fadeInScale 0.8s ease-out 0.3s both;
 }
 
 .logo {
-    font-size: 2.4rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, #fff 0%, #e0e7ff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+    animation: fadeInScale 0.8s ease-out 0.5s both;
 }
 
+/* Highlight text in green */
+.highlight-text {
+    color: #10b981;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Hero section text styles */
 .tagline {
     font-size: 3.2rem;
     font-weight: 700;
@@ -153,57 +208,52 @@ body {
     line-height: 1.5;
 }
 
-.stats-container {
-    display: flex;
-    gap: 30px;
-    margin-bottom: 25px;
-}
-
-.stat-item {
-    text-align: center;
-}
-
-.stat-number {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #10b981;
-    text-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
-}
-
-.stat-label {
-    font-size: 0.8rem;
-    opacity: 0.8;
-    margin-top: 5px;
-}
-
+/* Features list - ensure all items are visible */
 .features {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 400px;
 }
 
 .feature {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 1rem;
-    opacity: 0.95;
+    gap: 12px;
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: slideInLeft 0.6s ease-out forwards;
 }
+
+.feature:nth-child(1) { animation-delay: 0.8s; }
+.feature:nth-child(2) { animation-delay: 0.9s; }
+.feature:nth-child(3) { animation-delay: 1.0s; }
+.feature:nth-child(4) { animation-delay: 1.1s; }
+.feature:nth-child(5) { animation-delay: 1.2s; }
 
 .check-icon {
     width: 20px;
     height: 20px;
     background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
     font-size: 12px;
     font-weight: bold;
     flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.feature span {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .testimonial {
@@ -243,6 +293,10 @@ body {
     flex-shrink: 0;
     max-height: 100vh;
     overflow: hidden;
+    width: 100%;
+    max-width: 450px;
+    padding: 30px 25px;
+    box-sizing: border-box;
 }
 
 @keyframes slideUp {
@@ -443,364 +497,49 @@ body {
     display: block;
 }
 
-/* Mobile responsiveness */
+/* Responsive Design - Mobile Only Changes */
 @media (max-width: 1024px) {
+    .desktop-only {
+        display: none;
+    }
+    
+    .mobile-logo-header {
+        display: block;
+    }
+    
     .container {
-        align-items: center;
-        height: 100vh;
-        padding: 15px;
-    }
-    
-    .main-content {
-        gap: 40px;
-        height: 100%;
-        align-items: center;
-    }
-    
-    .form-container {
-        min-width: 350px;
-        max-width: 400px;
-        padding: 30px;
-    }
-    
-    .tagline {
-        font-size: 2.8rem;
-    }
-    
-    .description {
-        font-size: 1rem;
-        margin-bottom: 20px;
-    }
-    
-    .stats-container {
-        gap: 25px;
-        margin-bottom: 20px;
-    }
-    
-    .features {
-        gap: 12px;
-        margin-bottom: 12px;
-    }
-    
-    .hero-section {
-        max-height: 100vh;
-        overflow: hidden;
-    }
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding: 10px;
-        height: 100vh;
+        height: auto;
+        min-height: 100vh;
         align-items: flex-start;
+        justify-content: flex-start;
+        padding-top: 80px; /* Account for mobile header */
     }
     
     .main-content {
+        height: auto;
+        min-height: 100vh;
         flex-direction: column;
-        text-align: center;
-        gap: 20px;
-        height: 100%;
         align-items: center;
-        justify-content: center;
-    }
-
-    .hero-section {
-        order: 2;
-        max-width: 100%;
-        padding: 0;
-        max-height: 50vh;
-        overflow: hidden;
-    }
-
-    .form-container {
-        min-width: auto;
-        width: 100%;
-        max-width: 100%;
-        padding: 25px 20px;
-        order: 1;
-        max-height: 45vh;
-        overflow: hidden;
-    }
-
-    .tagline {
-        font-size: 2.2rem;
-        line-height: 1.2;
-        margin-bottom: 15px;
-    }
-
-    .logo {
-        font-size: 1.8rem;
-    }
-
-    .description {
-        font-size: 0.9rem;
-        margin-bottom: 15px;
-        line-height: 1.4;
-    }
-
-    .stats-container {
-        justify-content: center;
-        gap: 20px;
-        margin-bottom: 15px;
-    }
-
-    .features {
-        grid-template-columns: 1fr;
-        gap: 10px;
-        max-width: 300px;
-        margin: 0 auto 15px;
-    }
-
-    .medical-logo {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .early-access-badge {
-        font-size: 0.75rem;
-        padding: 6px 12px;
-        margin-bottom: 15px;
-    }
-    
-    .form-title {
-        font-size: 1.6rem;
-        margin-bottom: 10px;
-    }
-    
-    .form-subtitle {
-        font-size: 0.9rem;
-        margin-bottom: 20px;
-    }
-    
-    .form-group {
-        margin-bottom: 15px;
-    }
-    
-    .form-input {
-        padding: 12px 15px;
-        font-size: 0.9rem;
-    }
-    
-    .submit-btn {
-        padding: 12px;
-        font-size: 0.95rem;
-    }
-    
-    .form-footer {
-        font-size: 0.75rem;
-        margin-top: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 8px;
-        height: auto;
-        min-height: 100vh;
-        overflow: auto;
-    }
-    
-    .main-content {
-        gap: 15px;
-        padding: 10px 0;
-        height: auto;
-        min-height: 100vh;
-    }
-    
-    .hero-section {
-        max-height: none;
-        overflow: visible;
-    }
-    
-    .form-container {
-        max-height: none;
-        overflow: visible;
-        padding: 20px 15px;
-    }
-
-    .tagline {
-        font-size: 1.8rem;
-        margin-bottom: 12px;
-    }
-
-    .description {
-        font-size: 0.8rem;
-        margin-bottom: 12px;
-        line-height: 1.3;
-    }
-
-    .stats-container {
-        gap: 15px;
-        margin-bottom: 12px;
-    }
-
-    .stat-number {
-        font-size: 1.6rem;
-    }
-    
-    .stat-label {
-        font-size: 0.7rem;
-    }
-    
-    .features {
-        gap: 8px;
-        margin-bottom: 10px;
-    }
-    
-    .feature {
-        font-size: 0.85rem;
-    }
-    
-    .check-icon {
-        width: 16px;
-        height: 16px;
-        font-size: 10px;
-    }
-    
-    .early-access-badge {
-        font-size: 0.7rem;
-        padding: 5px 10px;
-        margin-bottom: 12px;
-    }
-    
-    .logo {
-        font-size: 1.5rem;
-    }
-    
-    .medical-logo {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .form-input {
-        padding: 10px 12px;
-        font-size: 0.85rem;
-    }
-    
-    .submit-btn {
-        padding: 10px;
-        font-size: 0.9rem;
-    }
-    
-    .form-footer {
-        font-size: 0.7rem;
-        margin-top: 12px;
-    }
-    
-    .form-message {
-        padding: 10px;
-        margin-top: 12px;
-        font-size: 0.8rem;
-    }
-}
-
-/* Extra small mobile devices - enable scrolling */
-@media (max-width: 400px) {
-    body {
-        overflow: auto;
-        height: auto;
-        min-height: 100vh;
-    }
-    
-    .container {
-        height: auto;
-        min-height: 100vh;
-        overflow: visible;
-        align-items: flex-start;
-    }
-    
-    .main-content {
-        height: auto;
-        min-height: 100vh;
-        gap: 20px;
-        padding: 15px 0;
-    }
-    
-    .hero-section {
-        max-height: none;
-        overflow: visible;
-        padding: 10px 0;
-    }
-    
-    .form-container {
-        max-height: none;
-        overflow: visible;
-        padding: 25px 20px;
-    }
-    
-    .tagline {
-        font-size: 1.6rem;
-        margin-bottom: 15px;
-    }
-    
-    .description {
-        font-size: 0.85rem;
-        margin-bottom: 15px;
-        line-height: 1.4;
-    }
-    
-    .stats-container {
-        gap: 20px;
-        margin-bottom: 15px;
-    }
-    
-    .features {
-        gap: 12px;
-        margin-bottom: 15px;
-    }
-    
-    .form-title {
-        font-size: 1.5rem;
-        margin-bottom: 12px;
-    }
-    
-    .form-subtitle {
-        font-size: 0.85rem;
-        margin-bottom: 20px;
-    }
-    
-    .form-group {
-        margin-bottom: 18px;
-    }
-    
-    .form-input {
-        padding: 12px 15px;
-        font-size: 0.9rem;
-    }
-    
-    .submit-btn {
-        padding: 12px;
-        font-size: 0.95rem;
-    }
-    
-    .form-footer {
-        font-size: 0.75rem;
-        margin-top: 18px;
-    }
-}
-
-/* Ultra small mobile devices */
-@media (max-width: 360px) {
-    .container {
-        padding: 10px;
-    }
-    
-    .main-content {
+        justify-content: flex-start;
         gap: 25px;
         padding: 20px 0;
     }
     
     .hero-section {
-        padding: 15px 0;
+        max-height: none;
+        overflow: visible;
+        padding: 15px 0 25px 0;
+        order: 2; /* Content comes after form */
     }
     
     .form-container {
-        padding: 30px 25px;
+        order: 1; /* Form comes first */
+        margin-bottom: 20px;
     }
     
     .tagline {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
+        font-size: 1.8rem;
+        margin-bottom: 18px;
     }
     
     .description {
@@ -809,44 +548,309 @@ body {
         line-height: 1.5;
     }
     
-    .stats-container {
-        gap: 25px;
-        margin-bottom: 20px;
-    }
-    
     .features {
-        gap: 15px;
-        margin-bottom: 20px;
+        gap: 10px;
+        margin-bottom: 25px;
+        max-width: 350px;
     }
     
-    .form-title {
+    .feature {
+        padding: 6px 0;
+        gap: 10px;
+    }
+    
+    .check-icon {
+        width: 18px;
+        height: 18px;
+        font-size: 11px;
+    }
+    
+    .feature span {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        padding-top: 80px;
+    }
+    
+    .main-content {
+        padding: 15px 0;
+        gap: 20px;
+    }
+    
+    .hero-section {
+        padding: 10px 0 20px 0;
+        order: 2; /* Content comes after form */
+    }
+    
+    .form-container {
+        order: 1; /* Form comes first */
+        margin-bottom: 15px;
+    }
+    
+    .tagline {
         font-size: 1.6rem;
         margin-bottom: 15px;
     }
     
-    .form-subtitle {
-        font-size: 0.9rem;
-        margin-bottom: 25px;
+    .description {
+        font-size: 0.85rem;
+        margin-bottom: 18px;
+        line-height: 1.4;
     }
     
-    .form-group {
+    .features {
+        gap: 8px;
         margin-bottom: 20px;
+        max-width: 320px;
     }
     
-    .form-input {
-        padding: 15px 18px;
-        font-size: 1rem;
+    .feature {
+        padding: 5px 0;
+        gap: 8px;
     }
     
-    .submit-btn {
-        padding: 15px;
-        font-size: 1rem;
+    .check-icon {
+        width: 16px;
+        height: 16px;
+        font-size: 10px;
     }
     
-    .form-footer {
+    .feature span {
+        font-size: 0.85rem;
+    }
+    
+    .form-container {
+        padding: 25px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 12px;
+        padding-top: 80px;
+    }
+    
+    .main-content {
+        padding: 12px 0;
+        gap: 18px;
+    }
+    
+    .hero-section {
+        padding: 8px 0 18px 0;
+        order: 2; /* Content comes after form */
+    }
+    
+    .form-container {
+        order: 1; /* Form comes first */
+        margin-bottom: 12px;
+    }
+    
+    .tagline {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+    }
+    
+    .description {
         font-size: 0.8rem;
-        margin-top: 20px;
+        margin-bottom: 15px;
+        line-height: 1.3;
     }
+    
+    .features {
+        gap: 6px;
+        margin-bottom: 18px;
+        max-width: 280px;
+    }
+    
+    .feature {
+        padding: 4px 0;
+        gap: 6px;
+    }
+    
+    .check-icon {
+        width: 15px;
+        height: 15px;
+        font-size: 9px;
+    }
+    
+    .feature span {
+        font-size: 0.8rem;
+    }
+    
+    .form-container {
+        padding: 20px 15px;
+    }
+    
+    .mobile-logo-header {
+        padding: 12px 0;
+    }
+    
+    .mobile-logo {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .mobile-logo-text {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .container {
+        padding: 10px;
+        padding-top: 75px;
+    }
+    
+    .main-content {
+        padding: 10px 0;
+        gap: 15px;
+    }
+    
+    .hero-section {
+        padding: 6px 0 15px 0;
+        order: 2; /* Content comes after form */
+    }
+    
+    .form-container {
+        order: 1; /* Form comes first */
+        margin-bottom: 10px;
+    }
+    
+    .tagline {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+    
+    .description {
+        font-size: 0.75rem;
+        margin-bottom: 12px;
+        line-height: 1.2;
+    }
+    
+    .features {
+        gap: 5px;
+        margin-bottom: 15px;
+        max-width: 260px;
+    }
+    
+    .feature {
+        padding: 3px 0;
+        gap: 5px;
+    }
+    
+    .check-icon {
+        width: 14px;
+        height: 14px;
+        font-size: 8px;
+    }
+    
+    .feature span {
+        font-size: 0.75rem;
+    }
+    
+    .form-container {
+        padding: 18px 12px;
+    }
+    
+    .mobile-logo-header {
+        padding: 10px 0;
+    }
+    
+    .mobile-logo {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .mobile-logo-text {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 8px;
+        padding-top: 70px;
+    }
+    
+    .main-content {
+        padding: 8px 0;
+        gap: 12px;
+    }
+    
+    .hero-section {
+        padding: 4px 0 12px 0;
+        order: 2; /* Content comes after form */
+    }
+    
+    .form-container {
+        order: 1; /* Form comes first */
+        margin-bottom: 8px;
+    }
+    
+    .tagline {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+    
+    .description {
+        font-size: 0.7rem;
+        margin-bottom: 10px;
+        line-height: 1.1;
+    }
+    
+    .features {
+        gap: 4px;
+        margin-bottom: 12px;
+        max-width: 240px;
+    }
+    
+    .feature {
+        padding: 2px 0;
+        gap: 4px;
+    }
+    
+    .check-icon {
+        width: 13px;
+        height: 13px;
+        font-size: 7px;
+    }
+    
+    .feature span {
+        font-size: 0.7rem;
+    }
+    
+    .form-container {
+        padding: 15px 10px;
+    }
+    
+    .mobile-logo-header {
+        padding: 8px 0;
+    }
+    
+    .mobile-logo {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .mobile-logo-text {
+        font-size: 1.1rem;
+    }
+}
+
+/* Ensure content is always visible and scrollable */
+body {
+    height: auto;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container, .main-content, .hero-section {
+    overflow: visible;
+    max-height: none;
 }
 
 /* iPad Air specific fixes */
@@ -1692,4 +1696,489 @@ body {
         padding: 12px 25px;
         font-size: 0.9rem;
     }
+}
+
+/* Animated Background System - invincible.bio Style */
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* Elegant Geometric Shapes - invincible.bio inspired */
+.floating-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.shape {
+    position: absolute;
+    opacity: 0.08;
+    animation: elegantFloat 25s infinite ease-in-out;
+}
+
+.shape-1 {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(45deg, #ffffff, rgba(255, 255, 255, 0.3));
+    border-radius: 50%;
+    top: 15%;
+    left: 8%;
+    animation-delay: 0s;
+    animation-duration: 30s;
+    filter: blur(1px);
+}
+
+.shape-2 {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    top: 65%;
+    left: 85%;
+    animation-delay: 8s;
+    animation-duration: 35s;
+    filter: blur(0.5px);
+}
+
+.shape-3 {
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+    border-radius: 50%;
+    top: 25%;
+    left: 75%;
+    animation-delay: 15s;
+    animation-duration: 40s;
+    filter: blur(1.5px);
+}
+
+.shape-4 {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    top: 80%;
+    left: 15%;
+    animation-delay: 22s;
+    animation-duration: 28s;
+    filter: blur(0.8px);
+}
+
+.shape-5 {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.08));
+    border-radius: 50%;
+    top: 10%;
+    left: 90%;
+    animation-delay: 5s;
+    animation-duration: 32s;
+    filter: blur(1px);
+}
+
+.shape-6 {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.06));
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    top: 70%;
+    left: 10%;
+    animation-delay: 18s;
+    animation-duration: 38s;
+    filter: blur(0.6px);
+}
+
+.shape-7 {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.04));
+    border-radius: 50%;
+    top: 45%;
+    left: 5%;
+    animation-delay: 12s;
+    animation-duration: 36s;
+    filter: blur(1.2px);
+}
+
+.shape-8 {
+    width: 110px;
+    height: 110px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.05));
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    top: 85%;
+    left: 70%;
+    animation-delay: 25s;
+    animation-duration: 34s;
+    filter: blur(0.9px);
+}
+
+/* Subtle Particle System - invincible.bio style */
+.particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    animation: elegantParticle 20s infinite linear;
+}
+
+.particle:nth-child(1) {
+    top: 12%;
+    left: 25%;
+    animation-delay: 0s;
+    animation-duration: 25s;
+}
+
+.particle:nth-child(2) {
+    top: 28%;
+    left: 68%;
+    animation-delay: 3s;
+    animation-duration: 28s;
+}
+
+.particle:nth-child(3) {
+    top: 42%;
+    left: 92%;
+    animation-delay: 7s;
+    animation-duration: 22s;
+}
+
+.particle:nth-child(4) {
+    top: 58%;
+    left: 18%;
+    animation-delay: 11s;
+    animation-duration: 30s;
+}
+
+.particle:nth-child(5) {
+    top: 72%;
+    left: 78%;
+    animation-delay: 14s;
+    animation-duration: 26s;
+}
+
+.particle:nth-child(6) {
+    top: 88%;
+    left: 35%;
+    animation-delay: 17s;
+    animation-duration: 24s;
+}
+
+.particle:nth-child(7) {
+    top: 18%;
+    left: 82%;
+    animation-delay: 20s;
+    animation-duration: 29s;
+}
+
+.particle:nth-child(8) {
+    top: 35%;
+    left: 12%;
+    animation-delay: 23s;
+    animation-duration: 27s;
+}
+
+.particle:nth-child(9) {
+    top: 62%;
+    left: 88%;
+    animation-delay: 26s;
+    animation-duration: 31s;
+}
+
+.particle:nth-child(10) {
+    top: 78%;
+    left: 45%;
+    animation-delay: 29s;
+    animation-duration: 23s;
+}
+
+.particle:nth-child(11) {
+    top: 22%;
+    left: 95%;
+    animation-delay: 32s;
+    animation-duration: 26s;
+}
+
+.particle:nth-child(12) {
+    top: 48%;
+    left: 8%;
+    animation-delay: 35s;
+    animation-duration: 28s;
+}
+
+.particle:nth-child(13) {
+    top: 75%;
+    left: 22%;
+    animation-delay: 38s;
+    animation-duration: 25s;
+}
+
+.particle:nth-child(14) {
+    top: 92%;
+    left: 65%;
+    animation-delay: 41s;
+    animation-duration: 27s;
+}
+
+.particle:nth-child(15) {
+    top: 8%;
+    left: 55%;
+    animation-delay: 44s;
+    animation-duration: 29s;
+}
+
+/* Elegant Grid Overlay - invincible.bio style */
+.grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 80px 80px;
+    animation: elegantGrid 60s infinite linear;
+}
+
+/* Flowing Lines - invincible.bio inspired */
+.flowing-lines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.flow-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: flowLine 15s infinite linear;
+}
+
+.flow-line:nth-child(1) {
+    width: 200px;
+    top: 20%;
+    left: -200px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.flow-line:nth-child(2) {
+    width: 150px;
+    top: 60%;
+    left: -150px;
+    animation-delay: 5s;
+    animation-duration: 22s;
+}
+
+.flow-line:nth-child(3) {
+    width: 180px;
+    top: 80%;
+    left: -180px;
+    animation-delay: 10s;
+    animation-duration: 20s;
+}
+
+/* Animation Keyframes - invincible.bio style */
+@keyframes elegantFloat {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px) rotate(0deg) scale(1);
+        opacity: 0.08;
+    }
+    25% {
+        transform: translateY(-30px) translateX(20px) rotate(90deg) scale(1.05);
+        opacity: 0.12;
+    }
+    50% {
+        transform: translateY(-60px) translateX(-15px) rotate(180deg) scale(0.95);
+        opacity: 0.08;
+    }
+    75% {
+        transform: translateY(-30px) translateX(10px) rotate(270deg) scale(1.02);
+        opacity: 0.15;
+    }
+}
+
+@keyframes elegantParticle {
+    0% {
+        transform: translateY(0px) translateX(0px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.4;
+    }
+    50% {
+        transform: translateY(-100px) translateX(30px);
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(-200px) translateX(60px);
+        opacity: 0;
+    }
+}
+
+@keyframes elegantGrid {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(80px, 80px);
+    }
+}
+
+@keyframes flowLine {
+    0% {
+        transform: translateX(0px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.1;
+    }
+    50% {
+        opacity: 0.15;
+    }
+    90% {
+        opacity: 0.1;
+    }
+    100% {
+        transform: translateX(calc(100vw + 200px));
+        opacity: 0;
+    }
+}
+
+/* Enhanced DNA Helix */
+.dna-helix {
+    position: fixed;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 300px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.helix-strand {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(16, 185, 129, 0.3), transparent);
+    animation: helixRotate 8s infinite linear;
+}
+
+.helix-strand:nth-child(1) {
+    left: 0;
+    animation-delay: 0s;
+}
+
+.helix-strand:nth-child(2) {
+    left: 20px;
+    animation-delay: 4s;
+}
+
+@keyframes helixRotate {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+/* Floating Elements */
+.floating-shapes .floating-shape {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-shapes .floating-shape:nth-child(1) {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.floating-shapes .floating-shape:nth-child(2) {
+    top: 60%;
+    left: 85%;
+    animation-delay: 2s;
+}
+
+.floating-shapes .floating-shape:nth-child(3) {
+    top: 80%;
+    left: 25%;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+        opacity: 0.1;
+    }
+    50% {
+        transform: translateY(-20px);
+        opacity: 0.3;
+    }
+}
+
+/* reCAPTCHA notice styling */
+.recaptcha-notice {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 8px;
+    line-height: 1.3;
+}
+
+.recaptcha-notice a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.recaptcha-notice a:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+/* Hide reCAPTCHA badge but keep functionality */
+.grecaptcha-badge {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    display: none !important;
+}
+
+/* Alternative method - move off-screen */
+.grecaptcha-badge {
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+}
+
+/* Ensure form still works */
+.g-recaptcha {
+    display: none !important;
+}
+
+/* Hide any reCAPTCHA elements */
+[data-sitekey] {
+    display: none !important;
 }

@@ -23,29 +23,75 @@
 <body>
     <!-- Background Animations -->
     <div class="bg-animations">
-        <div class="grid-overlay"></div>
-        <div class="floating-shapes" id="floating-shapes"></div>
+        <!-- Animated Background Shapes -->
+        <div class="animated-bg">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+                <div class="shape shape-6"></div>
+                <div class="shape shape-7"></div>
+                <div class="shape shape-8"></div>
+            </div>
+            
+            <!-- Particle System -->
+            <div class="particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+            
+            <!-- Grid Overlay -->
+            <div class="grid-overlay"></div>
+            
+            <!-- Flowing Lines -->
+            <div class="flowing-lines">
+                <div class="flow-line"></div>
+                <div class="flow-line"></div>
+                <div class="flow-line"></div>
+            </div>
+        </div>
         
-        <!-- DNA Helix Animation -->
+        <!-- Existing floating elements -->
+        <div class="floating-shapes">
+            <div class="floating-shape"></div>
+            <div class="floating-shape"></div>
+            <div class="floating-shape"></div>
+        </div>
+        
         <div class="dna-helix">
-            <div class="dna-strand left"></div>
-            <div class="dna-strand right"></div>
-            <div class="dna-base" style="top: 10px;"></div>
-            <div class="dna-base" style="top: 30px;"></div>
-            <div class="dna-base" style="top: 50px;"></div>
-            <div class="dna-base" style="top: 70px;"></div>
-            <div class="dna-base" style="top: 90px;"></div>
-            <div class="dna-base" style="top: 110px;"></div>
-            <div class="dna-base" style="top: 130px;"></div>
-            <div class="dna-base" style="top: 150px;"></div>
+            <div class="helix-strand"></div>
+            <div class="helix-strand"></div>
+        </div>
+    </div>
+
+    <!-- Mobile Logo Header -->
+    <div class="mobile-logo-header">
+        <div class="mobile-logo-container">
+            <img src="logo.png" alt="MCAT Edge Logo" class="mobile-logo">
+            <span class="mobile-logo-text">MCAT Edge</span>
         </div>
     </div>
 
     <div class="container">
-        <!-- Main Landing Page -->
-        <div class="main-content" id="mainContent">
+        <div class="main-content">
             <div class="hero-section">
-                <div class="logo-container">
+                <!-- Desktop Logo Container (hidden on mobile) -->
+                <div class="logo-container desktop-only">
                     <img src="logo.png" alt="MCAT Edge Logo" class="medical-logo">
                     <div class="logo">MCAT Edge</div>
                 </div>
@@ -53,20 +99,9 @@
                 <div class="early-access-badge">🚀 Early Access Program</div>
                 <h1 class="tagline">Master Your MCAT Journey</h1>
                 <p class="description">
-                    An intuitive, practical, and affordable collaborative question bank built for premeds. Start smarter prep with real strategies, real questions, and a real community—designed by a 97th percentile scorer.
+                    An intuitive, practical, and affordable collaborative question bank built for premeds. Start smarter prep with real strategies, real questions, and a real community—<span class="highlight-text">designed by a 97th percentile scorer</span>.
                 </p>
 
-                <div class="stats-container">
-                    <div class="stat-item">
-                        <div class="stat-number">97th</div>
-                        <div class="stat-label">Percentile Score</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Premed Focused</div>
-                    </div>
-                </div>
-                
                 <div class="features">
                     <div class="feature">
                         <div class="check-icon">✓</div>
@@ -83,6 +118,10 @@
                     <div class="feature">
                         <div class="check-icon">✓</div>
                         <span>Expert Strategies</span>
+                    </div>
+                    <div class="feature">
+                        <div class="check-icon">✓</div>
+                        <span>Group Study Calls</span>
                     </div>
                 </div>
             </div>
@@ -142,8 +181,8 @@
                 <div id="formMessage" class="form-message"></div>
 
                 <div class="form-footer">
-                    By signing up, you agree to receive updates about MCAT Edge.<br>
-                    We respect your privacy and never share your information.
+                    <p>By signing up, you agree to receive updates about MCAT Edge. We respect your privacy and never share your information.</p>
+                    <p class="recaptcha-notice">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.</p>
                 </div>
             </div>
         </div>
