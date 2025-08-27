@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You - MCAT Edge | Welcome to Early Access</title>
-    <meta name="description" content="Thank you for joining MCAT Edge early access program. Get ready for your MCAT journey with our collaborative question bank.">
+    <title>You're In! - MCAT Edge | Waitlist Secured</title>
+    <meta name="description" content="Congratulations! You've secured your spot on the MCAT Edge waitlist. Get ready for priority access to the most practical MCAT prep platform.">
     
     <!-- Anime.js for animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
@@ -20,76 +20,88 @@
 <body>
     <!-- Background Animations -->
     <div class="bg-animations">
-        <div class="grid-overlay"></div>
-        <div class="floating-shapes" id="floating-shapes"></div>
+        <!-- Animated Background with enhanced effects -->
+        <div class="animated-bg"></div>
         
-        <!-- DNA Helix Animation -->
-        <div class="dna-helix">
-            <div class="dna-strand left"></div>
-            <div class="dna-strand right"></div>
-            <div class="dna-base" style="top: 10px;"></div>
-            <div class="dna-base" style="top: 30px;"></div>
-            <div class="dna-base" style="top: 50px;"></div>
-            <div class="dna-base" style="top: 70px;"></div>
-            <div class="dna-base" style="top: 90px;"></div>
-            <div class="dna-base" style="top: 110px;"></div>
-            <div class="dna-base" style="top: 130px;"></div>
-            <div class="dna-base" style="top: 150px;"></div>
+        <!-- Enhanced Particle System -->
+        <div class="particles" id="particles"></div>
+        
+        <!-- Neural Network -->
+        <div class="neural-network" id="neural-network"></div>
+        
+        <!-- Wave Container -->
+        <div class="wave-container">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
         </div>
+        
+        <!-- Grid Overlay -->
+        <div class="grid-overlay"></div>
+        
+        <!-- Flowing Lines -->
+        <div class="flowing-lines">
+            <div class="flow-line"></div>
+            <div class="flow-line"></div>
+            <div class="flow-line"></div>
+        </div>
+        
+        <!-- DNA Helix -->
+        <div class="dna-helix">
+            <div class="helix-strand"></div>
+            <div class="helix-strand"></div>
+        </div>
+        
+        <!-- Edge Effect Animation -->
+        <div class="edge-effect" id="edge-effect"></div>
+        
+        <!-- Confetti Container -->
+        <div class="confetti-container" id="confetti-container"></div>
     </div>
 
     <div class="container">
         <div class="thank-you-content">
-            <!-- Logo and Header -->
-            <div class="logo-container">
+            <!-- Logo and Header with Glow Effect -->
+            <div class="logo-container glowing-logo">
                 <img src="logo.png" alt="MCAT Edge Logo" class="medical-logo">
                 <div class="logo">MCAT Edge</div>
             </div>
             
-            <!-- Success Icon and Title -->
+            <!-- Main Success Section -->
             <div class="success-section">
-                <div class="success-icon">🎉</div>
-                <h1 class="thank-you-title">Welcome to MCAT Edge!</h1>
+                <h1 class="thank-you-title">🚀 You're In.</h1>
+                <h2 class="thank-you-subtitle">MCAT Edge waitlist secured.</h2>
                 
-                <!-- API Response Message Display -->
-                <div id="apiMessage" class="api-message" style="display: none;"></div>
-                
-                <!-- Personalized Welcome Message -->
-                <p class="thank-you-message">
-                    Thank you for joining our exclusive waitlist, <span id="userName" class="user-name">premed</span>! You're now part of an exclusive group of premeds who will get first access to MCAT Edge when we launch.
-                </p>
-            </div>
-            
-            <!-- Next Steps Section -->
-            <div class="next-steps">
-                <h2 class="next-steps-title">What happens next?</h2>
-                <div class="steps-grid">
-                    <div class="step-item">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h3>Confirmation Email</h3>
-                            <p>Check your inbox for a confirmation email with your early access details and next steps.</p>
-                        </div>
-                    </div>
-                    <div class="step-item">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h3>Platform Access</h3>
-                            <p>You'll receive login credentials and platform access within 24-48 hours of launch.</p>
-                        </div>
-                    </div>
-                    <div class="step-item">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3>Personalized Experience</h3>
-                            <p>Our AI will create a custom study plan based on your goals and schedule.</p>
-                        </div>
-                    </div>
+                <div class="thank-you-message">
+                    <p class="main-message">
+                        You now have priority access to the only practical, affordable, and collaborative MCAT question bank built by a 97th percentile scorer.
+                    </p>
+                    <p class="secondary-message">
+                        Spots are limited. Rewards go to early movers. Stay tuned in your inbox.
+                    </p>
                 </div>
             </div>
             
             <!-- CTA Section -->
             <div class="cta-section">
+                <div class="cta-content">
+                    <p class="cta-text">🔥 Share this link with a friend who's serious about scoring higher — you'll both move up the line.</p>
+                    <div class="share-buttons">
+                        <button class="share-btn twitter" onclick="shareOnTwitter()">
+                            Share on Twitter
+                        </button>
+                        <button class="share-btn linkedin" onclick="shareOnLinkedIn()">
+                            Share on LinkedIn
+                        </button>
+                        <button class="share-btn copy-link" onclick="copyLink()">
+                            Copy Link
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Back to Home -->
+            <div class="back-home-section">
                 <a href="/" class="back-home-button">
                     ← Back to Main Page
                 </a>
@@ -102,200 +114,277 @@
         document.addEventListener('DOMContentLoaded', function() {
             initThankYouAnimations();
             initBackgroundAnimations();
+            createConfetti();
+            createEdgeEffect();
             handleURLParameters();
         });
 
         function initThankYouAnimations() {
-            // Logo container entrance
+            // Logo container entrance with glow effect
             anime({
                 targets: '.logo-container',
-                translateY: [-30, 0],
+                translateY: [-50, 0],
                 opacity: [0, 1],
-                duration: 800,
+                scale: [0.8, 1],
+                duration: 1000,
                 easing: 'easeOutExpo'
             });
 
-            // Success section entrance
+            // Add pulsing glow effect to logo
             anime({
-                targets: '.success-section > *',
+                targets: '.glowing-logo',
+                boxShadow: [
+                    '0 0 20px rgba(16, 185, 129, 0.3)',
+                    '0 0 40px rgba(16, 185, 129, 0.6)',
+                    '0 0 20px rgba(16, 185, 129, 0.3)'
+                ],
+                duration: 2000,
+                loop: true,
+                easing: 'easeInOutSine'
+            });
+
+            // Title entrance
+            anime({
+                targets: '.thank-you-title',
+                translateY: [50, 0],
+                opacity: [0, 1],
+                scale: [0.8, 1],
+                duration: 800,
+                delay: 300,
+                easing: 'easeOutBack'
+            });
+
+            // Subtitle entrance
+            anime({
+                targets: '.thank-you-subtitle',
+                translateY: [30, 0],
+                opacity: [0, 1],
+                duration: 600,
+                delay: 600,
+                easing: 'easeOutExpo'
+            });
+
+            // Message entrance
+            anime({
+                targets: '.thank-you-message p',
                 translateY: [30, 0],
                 opacity: [0, 1],
                 duration: 600,
                 delay: function(el, i) {
-                    return 300 + (i * 150);
+                    return 900 + (i * 200);
                 },
                 easing: 'easeOutExpo'
             });
 
-            // Next steps entrance
+            // CTA section entrance
             anime({
-                targets: '.next-steps-title',
-                translateX: [-50, 0],
+                targets: '.cta-section',
+                translateY: [50, 0],
                 opacity: [0, 1],
-                duration: 600,
-                delay: 800,
+                duration: 800,
+                delay: 1500,
                 easing: 'easeOutExpo'
             });
 
-            // Step items entrance
-            anime({
-                targets: '.step-item',
-                scale: [0, 1],
-                rotate: [180, 0],
-                opacity: [0, 1],
-                duration: 600,
-                delay: function(el, i) {
-                    return 1000 + (i * 200);
-                },
-                easing: 'easeOutBack'
-            });
-
-            // CTA button entrance
+            // Back home button entrance
             anime({
                 targets: '.back-home-button',
                 translateY: [30, 0],
                 opacity: [0, 1],
                 duration: 600,
-                delay: 1600,
+                delay: 2000,
                 easing: 'easeOutExpo'
             });
         }
 
         function initBackgroundAnimations() {
-            // Create floating shapes
-            const shapesContainer = document.getElementById('floating-shapes');
-            const shapes = [];
+            // Create enhanced floating particles
+            createEnhancedParticles();
             
-            // Generate multiple floating shapes
-            for (let i = 0; i < 15; i++) {
-                const shape = document.createElement('div');
-                shape.classList.add('shape');
-                
-                // Random size and position
-                const size = Math.random() * 60 + 20;
-                shape.style.width = size + 'px';
-                shape.style.height = size + 'px';
-                shape.style.left = Math.random() * 100 + '%';
-                shape.style.top = Math.random() * 100 + '%';
-                
-                shapesContainer.appendChild(shape);
-                shapes.push(shape);
-            }
-
-            // Animate floating shapes
-            anime({
-                targets: shapes,
-                translateX: function() {
-                    return anime.random(-100, 100);
-                },
-                translateY: function() {
-                    return anime.random(-100, 100);
-                },
-                scale: function() {
-                    return anime.random(0.5, 1.5);
-                },
-                rotate: function() {
-                    return anime.random(0, 360);
-                },
-                opacity: function() {
-                    return anime.random(0.1, 0.6);
-                },
-                duration: function() {
-                    return anime.random(3000, 8000);
-                },
-                delay: function(el, i) {
-                    return anime.random(0, 2000);
-                },
-                direction: 'alternate',
-                loop: true,
-                easing: 'easeInOutSine'
+            // Create neural network nodes and connections
+            createNeuralNetwork();
+            
+            // Enhanced DNA helix animation
+            const helixStrands = document.querySelectorAll('.helix-strand');
+            helixStrands.forEach((strand, index) => {
+                anime({
+                    targets: strand,
+                    rotateY: [0, 360],
+                    duration: 10000 + (index * 1500),
+                    easing: 'linear',
+                    loop: true
+                });
             });
-
-            // DNA Helix rotation animation
-            anime({
-                targets: '.dna-helix',
-                rotateY: 360,
-                duration: 10000,
-                loop: true,
-                easing: 'linear'
-            });
-
-            // DNA bases pulsing
-            anime({
-                targets: '.dna-base',
-                scaleX: [1, 1.3, 1],
-                opacity: [0.3, 0.8, 0.3],
-                duration: 2000,
-                delay: function(el, i) {
-                    return i * 200;
-                },
-                direction: 'alternate',
-                loop: true,
-                easing: 'easeInOutSine'
-            });
-
+            
             // Grid overlay subtle animation
-            anime({
-                targets: '.grid-overlay',
-                opacity: [0.3, 0.7, 0.3],
-                duration: 5000,
-                loop: true,
-                easing: 'easeInOutSine'
-            });
+            const gridOverlay = document.querySelector('.grid-overlay');
+            if (gridOverlay) {
+                anime({
+                    targets: gridOverlay,
+                    translateX: [0, 80],
+                    translateY: [0, 80],
+                    duration: 60000,
+                    easing: 'linear',
+                    loop: true
+                });
+            }
         }
 
-        function handleURLParameters() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const status = urlParams.get('status');
-            const message = urlParams.get('message');
-            const name = urlParams.get('name');
+        // Create enhanced floating particles
+        function createEnhancedParticles() {
+            const container = document.getElementById('particles');
+            if (!container) return;
             
-            // Personalize the welcome message with user's name
-            if (name) {
-                const userNameElement = document.getElementById('userName');
-                if (userNameElement) {
-                    userNameElement.textContent = decodeURIComponent(name);
-                }
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random size
+                const size = Math.random() * 6 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Random position
+                particle.style.left = Math.random() * 100 + '%';
+                
+                // Random animation duration
+                particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // Create neural network nodes and connections
+        function createNeuralNetwork() {
+            const container = document.getElementById('neural-network');
+            if (!container) return;
+            
+            const nodeCount = 12;
+            const nodes = [];
+            
+            // Create nodes
+            for (let i = 0; i < nodeCount; i++) {
+                const node = document.createElement('div');
+                node.className = 'node';
+                
+                const x = Math.random() * window.innerWidth;
+                const y = Math.random() * window.innerHeight;
+                
+                node.style.left = x + 'px';
+                node.style.top = y + 'px';
+                node.style.animationDelay = Math.random() * 3 + 's';
+                
+                nodes.push({ element: node, x, y });
+                container.appendChild(node);
             }
             
-            if (status && message) {
-                const apiMessageElement = document.getElementById('apiMessage');
-                if (apiMessageElement) {
-                    apiMessageElement.textContent = decodeURIComponent(message);
-                    apiMessageElement.style.display = 'block';
+            // Create connections between nearby nodes
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const distance = Math.sqrt(
+                        Math.pow(nodes[i].x - nodes[j].x, 2) + 
+                        Math.pow(nodes[i].y - nodes[j].y, 2)
+                    );
                     
-                    // Set appropriate styling based on status
-                    if (status === 'true' || status === 'success') {
-                        apiMessageElement.className = 'api-message success';
-                    } else if (status === 'false' || status === 'error') {
-                        apiMessageElement.className = 'api-message error';
-                    } else {
-                        apiMessageElement.className = 'api-message info';
+                    if (distance < 300) {
+                        const connection = document.createElement('div');
+                        connection.className = 'connection';
+                        
+                        const angle = Math.atan2(
+                            nodes[j].y - nodes[i].y,
+                            nodes[j].x - nodes[i].x
+                        );
+                        
+                        connection.style.left = nodes[i].x + 'px';
+                        connection.style.top = nodes[i].y + 'px';
+                        connection.style.width = distance + 'px';
+                        connection.style.transform = `rotate(${angle}rad)`;
+                        connection.style.animationDelay = Math.random() * 4 + 's';
+                        
+                        container.appendChild(connection);
                     }
                 }
             }
         }
 
-        // Mouse movement parallax effect
-        document.addEventListener('mousemove', function(e) {
-            const shapes = document.querySelectorAll('.shape');
+        function createConfetti() {
+            const container = document.getElementById('confetti-container');
+            if (!container) return;
             
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
+            const confettiCount = 100;
+            const colors = ['#10b981', '#059669', '#ffffff', '#fbbf24', '#ef4444', '#8b5cf6'];
             
-            shapes.forEach((shape, index) => {
-                const speed = (index + 1) * 0.5;
-                const x = (mouseX - 0.5) * speed * 20;
-                const y = (mouseY - 0.5) * speed * 20;
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
                 
-                anime({
-                    targets: shape,
-                    translateX: x,
-                    translateY: y,
-                    duration: 1000,
-                    easing: 'easeOutQuart'
-                });
+                container.appendChild(confetti);
+            }
+        }
+
+        function createEdgeEffect() {
+            const container = document.getElementById('edge-effect');
+            if (!container) return;
+            
+            // Create multiple edge lines
+            for (let i = 0; i < 8; i++) {
+                const edgeLine = document.createElement('div');
+                edgeLine.className = 'edge-line';
+                edgeLine.style.left = Math.random() * 100 + '%';
+                edgeLine.style.animationDelay = Math.random() * 2 + 's';
+                
+                container.appendChild(edgeLine);
+            }
+        }
+
+        function handleURLParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const name = urlParams.get('name');
+            
+            // Personalize the welcome message with user's name if available
+            if (name) {
+                // You can use the name parameter for future personalization
+                console.log('Welcome, ' + decodeURIComponent(name));
+            }
+        }
+
+        // Share functions
+        function shareOnTwitter() {
+            const text = "🚀 Just secured my spot on the MCAT Edge waitlist! The only practical, affordable, and collaborative MCAT question bank built by a 97th percentile scorer. Join me: ";
+            const url = window.location.origin;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`);
+        }
+
+        function shareOnLinkedIn() {
+            const text = "🚀 Just secured my spot on the MCAT Edge waitlist! The only practical, affordable, and collaborative MCAT question bank built by a 97th percentile scorer.";
+            const url = window.location.origin;
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=${encodeURIComponent('MCAT Edge Waitlist')}&summary=${encodeURIComponent(text)}`);
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.origin).then(() => {
+                const btn = document.querySelector('.copy-link');
+                btn.textContent = 'Copied!';
+                setTimeout(() => {
+                    btn.textContent = 'Copy Link';
+                }, 2000);
             });
+        }
+
+        // Recreate neural network on resize
+        window.addEventListener('resize', () => {
+            const neuralContainer = document.getElementById('neural-network');
+            if (neuralContainer) {
+                neuralContainer.innerHTML = '';
+                createNeuralNetwork();
+            }
         });
     </script>
 </body>

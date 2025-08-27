@@ -13,6 +13,12 @@ function initBackgroundAnimations() {
     const particles = document.querySelectorAll('.particle');
     const flowLines = document.querySelectorAll('.flow-line');
     
+    // Create enhanced floating particles
+    createEnhancedParticles();
+    
+    // Create neural network nodes and connections
+    createNeuralNetwork();
+    
     // Add subtle mouse parallax effect to shapes (invincible.bio style)
     document.addEventListener('mousemove', (e) => {
         const mouseX = e.clientX / window.innerWidth;
@@ -59,27 +65,6 @@ function initBackgroundAnimations() {
         });
     });
     
-    // Dynamic particle spawning with elegant timing
-    function spawnElegantParticle() {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = '100%';
-        particle.style.animationDuration = (20 + Math.random() * 15) + 's';
-        
-        document.querySelector('.particles').appendChild(particle);
-        
-        // Remove particle after animation
-        setTimeout(() => {
-            if (particle.parentNode) {
-                particle.parentNode.removeChild(particle);
-            }
-        }, 35000);
-    }
-    
-    // Spawn particles less frequently for elegance
-    setInterval(spawnElegantParticle, 3000);
-    
     // Enhanced DNA helix animation
     const helixStrands = document.querySelectorAll('.helix-strand');
     helixStrands.forEach((strand, index) => {
@@ -99,37 +84,100 @@ function initBackgroundAnimations() {
             targets: gridOverlay,
             translateX: [0, 80],
             translateY: [0, 80],
-            duration: 60000, // Slower, more elegant movement
+            duration: 60000,
             easing: 'linear',
             loop: true
         });
     }
     
-    // Flowing lines animation
-    flowLines.forEach((line, index) => {
-        anime({
-            targets: line,
-            translateX: [0, `calc(100vw + ${line.offsetWidth}px)`],
-            duration: 15000 + (index * 2000),
-            easing: 'linear',
-            loop: true,
-            delay: index * 3000
-        });
+    // Recreate neural network on resize
+    window.addEventListener('resize', () => {
+        const neuralContainer = document.getElementById('neural-network');
+        if (neuralContainer) {
+            neuralContainer.innerHTML = '';
+            createNeuralNetwork();
+        }
     });
+}
+
+// Create enhanced floating particles
+function createEnhancedParticles() {
+    const container = document.getElementById('particles');
+    if (!container) return;
     
-    // Floating elements with elegant movement
-    const floatingElements = document.querySelectorAll('.floating-shape');
-    floatingElements.forEach((element, index) => {
-        anime({
-            targets: element,
-            translateY: [0, -25, 0],
-            opacity: [0.1, 0.25, 0.1],
-            duration: 8000 + (index * 1000),
-            easing: 'easeInOutSine',
-            loop: true,
-            delay: index * 2500
-        });
-    });
+    const particleCount = 50;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        // Random size
+        const size = Math.random() * 6 + 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        
+        // Random position
+        particle.style.left = Math.random() * 100 + '%';
+        
+        // Random animation duration
+        particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        particle.style.animationDelay = Math.random() * 5 + 's';
+        
+        container.appendChild(particle);
+    }
+}
+
+// Create neural network nodes and connections
+function createNeuralNetwork() {
+    const container = document.getElementById('neural-network');
+    if (!container) return;
+    
+    const nodeCount = 12;
+    const nodes = [];
+    
+    // Create nodes
+    for (let i = 0; i < nodeCount; i++) {
+        const node = document.createElement('div');
+        node.className = 'node';
+        
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+        
+        node.style.left = x + 'px';
+        node.style.top = y + 'px';
+        node.style.animationDelay = Math.random() * 3 + 's';
+        
+        nodes.push({ element: node, x, y });
+        container.appendChild(node);
+    }
+    
+    // Create connections between nearby nodes
+    for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+            const distance = Math.sqrt(
+                Math.pow(nodes[i].x - nodes[j].x, 2) + 
+                Math.pow(nodes[i].y - nodes[j].y, 2)
+            );
+            
+            if (distance < 300) {
+                const connection = document.createElement('div');
+                connection.className = 'connection';
+                
+                const angle = Math.atan2(
+                    nodes[j].y - nodes[i].y,
+                    nodes[j].x - nodes[i].x
+                );
+                
+                connection.style.left = nodes[i].x + 'px';
+                connection.style.top = nodes[i].y + 'px';
+                connection.style.width = distance + 'px';
+                connection.style.transform = `rotate(${angle}rad)`;
+                connection.style.animationDelay = Math.random() * 4 + 's';
+                
+                container.appendChild(connection);
+            }
+        }
+    }
 }
 
 function initMobileHeader() {
@@ -428,7 +476,7 @@ async function handleWaitlistSubmission(formElement, messageElement) {
 }
 
 async function submitWaitlistData(name, email, recaptchaResponse) {
-    const apiEndpoint = 'https://securepanel.mcatedge.com/api/v1/newsletter-subscribe';
+    const apiEndpoint = 'https://api.mcatedge.com/api/v1/newsletter-subscribe';
 
     try {
         const bot = 'bot';
