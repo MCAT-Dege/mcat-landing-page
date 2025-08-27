@@ -1,10 +1,61 @@
 // Initialize all animations when page loads
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all functions in the correct order
+    addRippleStyles();
     initBackgroundAnimations();
     initFormAnimations();
+    initContentAnimations();
     initWaitlistForms();
     initSmoothScrolling();
-    initMobileHeader(); // Initialize mobile header
+    initMobileHeader();
+    
+    // Enhanced input focus animations
+    const inputs = document.querySelectorAll('.form-input');
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            anime({
+                targets: this,
+                translateY: -2,
+                scale: 1.02,
+                duration: 200,
+                easing: 'easeOutQuad'
+            });
+        });
+        
+        input.addEventListener('blur', function() {
+            anime({
+                targets: this,
+                translateY: 0,
+                scale: 1,
+                duration: 200,
+                easing: 'easeOutQuad'
+            });
+        });
+    });
+    
+    // Option hover effects
+    const options = document.querySelectorAll('.option');
+    options.forEach(option => {
+        option.addEventListener('mouseenter', function () {
+            this.style.transform = 'scale(1.05)';
+        });
+
+        option.addEventListener('mouseleave', function () {
+            this.style.transform = 'scale(1)';
+        });
+    });
+    
+    // Add scroll-triggered parallax for content sections
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.feature-card, .story-card');
+        
+        parallaxElements.forEach((el, index) => {
+            const speed = 0.5 + (index * 0.1);
+            const yPos = -(scrolled * speed);
+            el.style.transform = `translateY(${yPos}px)`;
+        });
+    });
 });
 
 function initBackgroundAnimations() {
@@ -238,31 +289,7 @@ function initFormAnimations() {
     });
 }
 
-// Enhanced input focus animations
-document.addEventListener('DOMContentLoaded', function() {
-    const inputs = document.querySelectorAll('.form-input');
-    inputs.forEach(input => {
-        input.addEventListener('focus', function() {
-            anime({
-                targets: this,
-                translateY: -2,
-                scale: 1.02,
-                duration: 200,
-                easing: 'easeOutQuad'
-            });
-        });
-        
-        input.addEventListener('blur', function() {
-            anime({
-                targets: this,
-                translateY: 0,
-                scale: 1,
-                duration: 200,
-                easing: 'easeOutQuad'
-            });
-        });
-    });
-});
+
 
 // Mouse movement parallax effect
 document.addEventListener('mousemove', function(e) {
@@ -388,6 +415,8 @@ function initContentAnimations() {
 }
 
 function initWaitlistForms() {
+    console.log('initWaitlistForms called - setting up form listeners');
+    
     const forms = [
         { id: 'waitlistForm', messageId: 'formMessage' },
         { id: 'footerWaitlistForm', messageId: 'footerFormMessage' }
@@ -398,16 +427,38 @@ function initWaitlistForms() {
         const messageElement = document.getElementById(form.messageId);
 
         if (formElement) {
-            formElement.addEventListener('submit', function (e) {
+            // Remove any existing listeners first
+            const newFormElement = formElement.cloneNode(true);
+            formElement.parentNode.replaceChild(newFormElement, formElement);
+            
+            // Add the new listener
+            newFormElement.addEventListener('submit', function (e) {
+                console.log('Form submitted:', form.id);
                 e.preventDefault();
-                handleWaitlistSubmission(formElement, messageElement);
+                handleWaitlistSubmission(newFormElement, messageElement);
             });
+            
+            console.log('Form listener added for:', form.id);
+        } else {
+            console.log('Form not found:', form.id);
         }
     });
 }
 
 // Handle waitlist form submission
 async function handleWaitlistSubmission(formElement, messageElement) {
+    console.log('handleWaitlistSubmission called for form:', formElement.id);
+    
+    // Prevent multiple submissions
+    if (formElement.dataset.submitting === 'true') {
+        console.log('Form already submitting, preventing duplicate submission');
+        return;
+    }
+    
+    // Mark form as submitting
+    formElement.dataset.submitting = 'true';
+    console.log('Form marked as submitting');
+    
     const formData = new FormData(formElement);
     const name = formData.get('name').trim();
     const email = formData.get('email').trim();
@@ -415,16 +466,19 @@ async function handleWaitlistSubmission(formElement, messageElement) {
     // Basic validation
     if (!name) {
         showMessage(messageElement, 'Please enter your full name.', 'error');
+        formElement.dataset.submitting = 'false';
         return;
     }
     
     if (!email) {
         showMessage(messageElement, 'Please enter your email address.', 'error');
+        formElement.dataset.submitting = 'false';
         return;
     }
     
     if (!isValidEmail(email)) {
         showMessage(messageElement, 'Please enter a valid email address.', 'error');
+        formElement.dataset.submitting = 'false';
         return;
     }
     
@@ -437,6 +491,7 @@ async function handleWaitlistSubmission(formElement, messageElement) {
     
     if (!recaptchaResponse) {
         showMessage(messageElement, 'reCAPTCHA verification failed. Please try again.', 'error');
+        formElement.dataset.submitting = 'false';
         return;
     }
     
@@ -457,21 +512,29 @@ async function handleWaitlistSubmission(formElement, messageElement) {
             // Track successful submission
             trackEvent('waitlist_signup', { name, email });
             
-            // Redirect to thank you page with API response data
-            setTimeout(() => {
-                const params = new URLSearchParams({
-                    status: result.success.toString(),
-                    message: encodeURIComponent(result.message || 'Successfully subscribed to newsletter'),
-                    name: encodeURIComponent(name)
-                });
-                window.location.href = `/thank-you.html?${params.toString()}`;
-            }, 2000);
+            // Only redirect to thank you page if API status is true
+            if (result.apiStatus === true) {
+                setTimeout(() => {
+                    const params = new URLSearchParams({
+                        status: result.success.toString(),
+                        message: encodeURIComponent(result.message || 'Successfully subscribed to newsletter'),
+                        name: encodeURIComponent(name)
+                    });
+                    window.location.href = `/thank-you.html?${params.toString()}`;
+                }, 2000);
+            } else {
+                // Show success message but don't redirect if API status is false
+                showMessage(messageElement, result.message || 'Thank you for signing up! You will receive updates soon.', 'success');
+            }
         } else {
             showMessage(messageElement, result.message || 'Something went wrong. Please try again.', 'error');
         }
     } catch (error) {
         console.error('Waitlist submission error:', error);
         showMessage(messageElement, 'Network error. Please check your connection and try again.', 'error');
+    } finally {
+        // Reset submitting flag
+        formElement.dataset.submitting = 'false';
     }
 }
 
@@ -538,30 +601,37 @@ function resetRecaptcha(formId) {
 }
 
 function handleAPIResponse(response) {
-
+    // Check if API has status field
     if (response.status !== undefined) {
         return {
             success: response.status === true,
+            apiStatus: response.status, // Preserve the actual API status
             message: response.message || 'Operation completed'
         };
     }
 
-
+    // Check if API has success field
     if (response.success !== undefined) {
-        return response;
+        return {
+            success: response.success,
+            apiStatus: response.success, // Use success as API status
+            message: response.message || 'Operation completed'
+        };
     }
 
-
+    // If only message is present, assume success but no redirect
     if (response.message) {
         return {
             success: true,
+            apiStatus: false, // Don't redirect if no explicit status
             message: response.message
         };
     }
 
-
+    // Default fallback - success but no redirect
     return {
         success: true,
+        apiStatus: false, // Don't redirect by default
         message: 'Successfully subscribed to newsletter'
     };
 }
@@ -672,21 +742,7 @@ function debounce(func, wait) {
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
 
-    const options = document.querySelectorAll('.option');
-    options.forEach(option => {
-        option.addEventListener('mouseenter', function () {
-            this.style.transform = 'scale(1.05)';
-        });
-
-        option.addEventListener('mouseleave', function () {
-            this.style.transform = 'scale(1)';
-        });
-    });
-
-
-});
 
 
 window.MCATEdge = {
@@ -709,24 +765,4 @@ function addRippleStyles() {
     document.head.appendChild(style);
 }
 
-// Initialize everything when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    addRippleStyles();
-    initBackgroundAnimations();
-    initFormAnimations();
-    initContentAnimations();
-    initWaitlistForms();
-    initSmoothScrolling();
-    
-    // Add scroll-triggered parallax for content sections
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.feature-card, .story-card');
-        
-        parallaxElements.forEach((el, index) => {
-            const speed = 0.5 + (index * 0.1);
-            const yPos = -(scrolled * speed);
-            el.style.transform = `translateY(${yPos}px)`;
-        });
-    });
-});
+
