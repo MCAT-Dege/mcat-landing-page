@@ -56,6 +56,10 @@
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="shortcut icon" type="image/png" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
+    
+    <!-- Preload image for faster social media crawling -->
+    <link rel="preload" as="image" href="https://mcatedge.com/opengraph_facebook_x_1200x630_white.png" />
+    
     <script src="config.js"></script>
 </head>
 <body>
@@ -234,8 +238,8 @@
     <script src="app.js"></script>
     <script src="script.js"></script>
     
-    <!-- Preload image for faster social media crawling -->
-    <link rel="preload" as="image" href="https://mcatedge.com/opengraph_facebook_x_1200x630_white.png" />
+    <!-- Hidden OG image for crawlers that check for img tags -->
+    <img src="https://mcatedge.com/opengraph_facebook_x_1200x630_white.png" alt="MCAT Edge - AI-Powered MCAT Preparation Platform Logo" style="display: none;" />
     
     <!-- Update meta tags dynamically if needed -->
     <script>
